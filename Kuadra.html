@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuadra - Tu Recepcionista Automatizado</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #9ca3af;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }xº
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* Features */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        /* Comparison */
+        .comparison {
+            padding: 5rem 0;
+            background-color: #f3f4f6;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        .check {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .cross {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: var(--light);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Kuadra</div>
+                <ul class="nav-links">
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#comparison">Comparativa</a></li>
+                    <li><a href="#pricing">Precios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <a href="#pricing" class="btn">Comenzar Ahora</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Tu recepcionista automatizado por <span class="highlight">menos de 1€ al día</span></h1>
+            <p>Kuadra atiende llamadas, gestiona citas y responde consultas las 24 horas del día, los 7 días de la semana, sin sueldo, sin bajas y sin errores.</p>
+            <a href="#pricing" class="btn">Comenzar a Ahorrar</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Por qué elegir Kuadra?</h2>
+                <p>La solución todo-en-uno para la gestión automatizada de tu negocio</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Atención 24/7</h3>
+                    <p>Nunca más pierdas una llamada o consulta, incluso fuera de horario laboral.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Ahorro Garantizado</h3>
+                    <p>Por el precio de una hora de trabajo, obtén un mes completo de servicio.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Gestión de Citas</h3>
+                    <p>Reservas automáticas por teléfono o WhatsApp integradas con tu calendario.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Sin Errores Humanos</h3>
+                    <p>Precisión absoluta en cada reserva, sin confusiones ni dobles reservas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Configuración Rápida</h3>
+                    <p>Comienza en minutos sin necesidad de conocimientos técnicos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Reportes Detallados</h3>
+                    <p>Accede a métricas y análisis del rendimiento de tu negocio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison" id="comparison">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compara y Ahorra</h2>
+                <p>Descubre por qué Kuadra es la mejor inversión para tu negocio</p>
+            </div>
+            <table class="comparison-table">
+                <tr>
+                    <th>Característica</th>
+                    <th>Recepcionista Humano</th>
+                    <th>Kuadra</th>
+                </tr>
+                <tr>
+                    <td>Coste Mensual</td>
+                    <td class="cross">1.200€ - 1.600€+</td>
+                    <td class="check">Desde 29€/mes</td>
+                </tr>
+                <tr>
+                    <td>Horario de Atención</td>
+                    <td>8h/día, 5d/semana</td>
+                    <td class="check">24/7, 365 días</td>
+                </tr>
+                <tr>
+                    <td>Seguridad Social</td>
+                    <td class="cross">Sí (+300€/mes)</td>
+                    <td class="check">No</td>
+                </tr>
+                <tr>
+                    <td>Bajas Laborales</td>
+                    <td class="cross">Sí</td>
+                    <td class="check">Nunca</td>
+                </tr>
+                <tr>
+                    <td>Errores en Reservas</td>
+                    <td class="cross">Posibles</td>
+                    <td class="check">Casi cero</td>
+                </tr>
+                <tr>
+                    <td>Capacidad Múltiples Llamadas</td>
+                    <td class="cross">Limitada</td>
+                    <td class="check">Ilimitada</td>
+                </tr>
+                <tr>
+                    <td>Integración con WhatsApp</td>
+                    <td class="cross">Depende del empleado</td>
+                    <td class="check">Sí, automática</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planes a Medida</h2>
+                <p>Elige el plan que mejor se adapte a las necesidades de tu negocio</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Básico</h3>
+                    <div class="price">29€<span>/mes</span></div>
+                    <ul class="pricing-features">
+                        <li>50 llamadas/mes</li>
+                        <li>25 reservas/mes</li>
+                        <li>Soporte por email</li>
+                        <li>Integración básica</li>
+                    </ul>
+                    <a href="#" class="btn">Empezar Ahora</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Profesional</h3>
+                    <div class="price">59€<span>/mes</span></div>
+                    <ul class="pricing-features">
+                        <li>200 llamadas/mes</li>
+                        <li>100 reservas/mes</li>
+                        <li>Soporte prioritario</li>
+                        <li>Integración WhatsApp</li>
+                        <li>Personalización avanzada</li>
+                    </ul>
+                    <a href="#" class="btn">Empezar Ahora</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Empresa</h3>
+                    <div class="price">99€<span>/mes</span></div>
+                    <ul class="pricing-features">
+                        <li>Llamadas ilimitadas</li>
+                        <li>Reservas ilimitadas</li>
+                        <li>Soporte 24/7</li>
+                        <li>Integraciones completas</li>
+                        <li>Reportes avanzados</li>
+                        <li>Personalización total</li>
+                    </ul>
+                    <a href="#" class="btn">Empezar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>¿Listo para revolucionar tu negocio?</h2>
+            <p>Comienza hoy mismo y ahorra miles de euros al año en costes de personal</p>
+            <a href="#pricing" class="btn">Probar Kuadra Gratis</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">Kuadra</div>
+            <p>La solución inteligente para la gestión automatizada de tu negocio</p>
+            <ul class="footer-links">
+                <li><a href="#">Términos de Servicio</a></li>
+                <li><a href="#">Privacidad</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <p>© 2023 Kuadra. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
